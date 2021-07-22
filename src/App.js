@@ -3,6 +3,7 @@ import { v4 as uuidv4 } from 'uuid';
 import Header from "./components/Header";
 import Tasks from "./components/Tasks";
 import AddTask from './components/AddTask';
+import Footer from './components/Footer';
 
 function App() {
 
@@ -17,13 +18,13 @@ function App() {
     {
         id: 2,
         text: 'Meeting at School',
-        day: 'Feb 6th at 1:30pm',
+        day: 'Feb 6th at 11:30am',
         reminder: true,
     },
     {
         id: 3,
         text: 'Food Shopping',
-        day: 'Feb 5th at 2:30pm',
+        day: 'Feb 9th at 1:00pm',
         reminder: false,
     },
 ]);
@@ -56,13 +57,17 @@ const toggleReminder = (id) => {
         toggleAdd={() => setShowAddTask(!showAddTask)}
         showAdd={showAddTask} 
       />
-      { showAddTask && <AddTask onAdd={addTask}/> }
-      { tasks.length > 0 ?
-        <Tasks tasks={tasks} 
-          onDelete={deleteTask}
-          onToggle={toggleReminder}
-        />
-      : 'No Current Tasks'}
+      <div className="sub-container">
+        { showAddTask && <AddTask onAdd={addTask}/> }
+        { tasks.length > 0 ?
+          <Tasks 
+            tasks={tasks} 
+            onDelete={deleteTask}
+            onToggle={toggleReminder}
+          />
+        : 'No Current Tasks.'}
+      </div>
+      <Footer />
     </div>
   );
 }

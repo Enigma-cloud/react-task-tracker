@@ -10,7 +10,7 @@ const AddTask = ({ onAdd }) => {
         e.preventDefault();
 
         // Validate inputs
-        if (!text && !day) {
+        if (!text || !day) {
             alert('Please add a task and a date');
             return
         }
