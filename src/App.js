@@ -4,30 +4,12 @@ import Header from "./components/Header";
 import Tasks from "./components/Tasks";
 import AddTask from './components/AddTask';
 import Footer from './components/Footer';
+import useLocalStorage from './hooks/useLocalStorage';
 
 function App() {
 
   const [showAddTask, setShowAddTask] = useState(false);
-  const [tasks, setTasks] = useState([
-    {
-        id: 1,
-        text: 'Dentist Appointment',
-        day: 'Feb 5th at 2:30pm',
-        reminder: true,
-    },
-    {
-        id: 2,
-        text: 'Meeting at School',
-        day: 'Feb 6th at 11:30am',
-        reminder: true,
-    },
-    {
-        id: 3,
-        text: 'Food Shopping',
-        day: 'Feb 9th at 1:00pm',
-        reminder: false,
-    },
-]);
+  const [tasks, setTasks] = useLocalStorage('tasks', []);
 
 // Add Task
 const addTask = (task) => {
@@ -65,7 +47,7 @@ const toggleReminder = (id) => {
             onDelete={deleteTask}
             onToggle={toggleReminder}
           />
-        : 'No Current Tasks.'}
+        : 'No Tasks to Show'}
       </div>
       <Footer />
     </div>
